@@ -140,6 +140,7 @@ namespace DeckManagerConsoleAPP.Flow
                             break;
 
                         case "7":
+                            DeleteDeck();
                             break;
 
                         case "0":
@@ -156,6 +157,41 @@ namespace DeckManagerConsoleAPP.Flow
                     while (waiting) ;
                 }
             }
+        }
+
+        public async Task DeleteDeck()
+        {
+            Layout.PlayerAlterNameDeck();
+            Console.Write("ID do deck: ");
+            string idDeck = Console.ReadLine();
+
+            if(!string.IsNullOrEmpty(idDeck))
+            {
+                try
+                {
+                    Deck existingDeck = player.Decks.FirstOrDefault(d => d.Id == int.Parse(idDeck));
+                    if(existingDeck != null)
+                    {
+                        player.Decks.Remove(existingDeck);
+                        new PlayerAPI().UpdatePlayer(player);
+                        Console.WriteLine($"Deck [{existingDeck.Name}] removido!");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Deck inexistente!");
+                    }
+                }
+                catch
+                {
+                    Console.WriteLine("Caractere inválido!");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Id do deck não pode ser nulo.");
+            }
+
+            PressEnter();
         }
 
         public async Task AlterNameDeck()

@@ -45,7 +45,7 @@
             Console.WriteLine("[4] Adicionar Carta ao Deck");
             Console.WriteLine("[5] Remover Carta do Deck");
             Console.WriteLine("[6] Alterar Nome do Deck");
-            //Console.WriteLine("[7] Deletar Deck");
+            Console.WriteLine("[7] Deletar Deck");
             Console.WriteLine("[0] Sair");
 
             Console.Write("-> ");
