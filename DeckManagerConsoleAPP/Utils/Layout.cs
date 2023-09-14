@@ -43,7 +43,7 @@
             Console.WriteLine("[2] Listar Deck");
             Console.WriteLine("[3] Criar Deck");
             Console.WriteLine("[4] Adicionar Carta ao Deck");
-            //Console.WriteLine("[5] Remover Carta do Deck");
+            Console.WriteLine("[5] Remover Carta do Deck");
             //Console.WriteLine("[6] Deletar Deck");
             Console.WriteLine("[0] Sair");
 
@@ -90,6 +90,13 @@
         {
             Console.WriteLine("=========================================");
             Console.WriteLine("|        Adicionar Carta ao Deck        |");
+            Console.WriteLine("=========================================");
+        }
+
+        public static void PlayerRmvCardFromDeck()
+        {
+            Console.WriteLine("=========================================");
+            Console.WriteLine("|         Remover Carta do Deck         |");
             Console.WriteLine("=========================================");
         }
 

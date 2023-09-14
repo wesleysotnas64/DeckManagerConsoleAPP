@@ -131,9 +131,9 @@ namespace DeckManagerConsoleAPP.Flow
                             AddCardToDeck();
                             break;
 
-                        //case "5":
-
-                        //    break;
+                        case "5":
+                            RmvCardFromDeck();
+                            break;
 
                         case "0":
                             loop = false;
@@ -151,10 +151,53 @@ namespace DeckManagerConsoleAPP.Flow
             }
         }
 
+        public async Task RmvCardFromDeck()
+        {
+            Layout.PlayerRmvCardFromDeck();
+            Console.Write("ID do deck: ");
+            string idDeck = Console.ReadLine();
+
+            if (!string.IsNullOrEmpty(idDeck))
+            {
+                Deck existingDeck= player.Decks.FirstOrDefault(d => d.Id == int.Parse(idDeck));
+                if(existingDeck != null)
+                {
+                    Console.Write("ID da carta: ");
+                    string idCard = Console.ReadLine();
+
+                    Card existingCard = existingDeck.Cards.FirstOrDefault(c => c.Id == int.Parse(idCard));
+                    if(existingCard != null)
+                    {
+                        int index = player.Decks.IndexOf(existingDeck);
+                        player.Decks[index].Cards.Remove(existingCard);
+                        new PlayerAPI().UpdatePlayer(player);
+                        Console.WriteLine($"Carta [{existingCard.Name}] removida");
+                    }
+                    else
+                    {
+                        Console.WriteLine($"Carta não existe no deck [{existingDeck.Name}]");
+                    }
+
+                }
+                else
+                {
+                    Console.WriteLine("Deck inexistente!");
+                }
+
+            }
+            else
+            {
+                Console.WriteLine("ID do deck não pode ser nulo!");
+            }
+
+            PressEnter();
+
+        }
+
         public async Task AddCardToDeck()
         {
             Layout.PlayerAddCardToDeck();
-            Console.WriteLine("ID da carta na coleção: ");
+            Console.Write("ID da carta na coleção: ");
             string idCarta = Console.ReadLine();
 
             if(!string.IsNullOrEmpty(idCarta))
@@ -163,7 +206,7 @@ namespace DeckManagerConsoleAPP.Flow
                 Card existingCard= player.Colection.FirstOrDefault(c => c.Id == int.Parse(idCarta));
                 if(existingCard != null)
                 {
-                    Console.WriteLine("ID do deck destino: ");
+                    Console.Write("ID do deck destino: ");
                     string idDeck = Console.ReadLine();
 
                     if(!string.IsNullOrEmpty(idDeck))
