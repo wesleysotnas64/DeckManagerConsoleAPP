@@ -135,6 +135,13 @@ namespace DeckManagerConsoleAPP.Flow
                             RmvCardFromDeck();
                             break;
 
+                        case "6":
+                            AlterNameDeck();
+                            break;
+
+                        case "7":
+                            break;
+
                         case "0":
                             loop = false;
                             waiting = false;
@@ -149,6 +156,47 @@ namespace DeckManagerConsoleAPP.Flow
                     while (waiting) ;
                 }
             }
+        }
+
+        public async Task AlterNameDeck()
+        {
+            Layout.PlayerAlterNameDeck();
+            Console.Write("ID do deck: ");
+            string idDeck = Console.ReadLine();
+
+            if (!string.IsNullOrEmpty(idDeck))
+            {
+                Deck existingDeck = player.Decks.FirstOrDefault(d => d.Id == int.Parse(idDeck));
+                if (existingDeck != null)
+                {
+                    Console.Write("Novo Dome do Deck: ");
+                    string newName = Console.ReadLine();
+
+                    if (!string.IsNullOrEmpty(newName))
+                    {
+                        int index = player.Decks.IndexOf(existingDeck);
+                        player.Decks[index].Name = newName;
+                        new PlayerAPI().UpdatePlayer(player);
+                        Console.WriteLine("Nome Alterado!");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Nome do deck não pode ser nulo");
+                    }
+
+                }
+                else
+                {
+                    Console.WriteLine("Deck inexistente!");
+                }
+
+            }
+            else
+            {
+                Console.WriteLine("ID do deck não pode ser nulo!");
+            }
+
+            PressEnter();
         }
 
         public async Task RmvCardFromDeck()

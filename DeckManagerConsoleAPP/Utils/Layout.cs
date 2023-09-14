@@ -44,7 +44,8 @@
             Console.WriteLine("[3] Criar Deck");
             Console.WriteLine("[4] Adicionar Carta ao Deck");
             Console.WriteLine("[5] Remover Carta do Deck");
-            //Console.WriteLine("[6] Deletar Deck");
+            Console.WriteLine("[6] Alterar Nome do Deck");
+            //Console.WriteLine("[7] Deletar Deck");
             Console.WriteLine("[0] Sair");
 
             Console.Write("-> ");
@@ -83,6 +84,20 @@
         {
             Console.WriteLine("=========================================");
             Console.WriteLine("|              Criar Deck               |");
+            Console.WriteLine("=========================================");
+        }
+
+        public static void PlayerAlterNameDeck()
+        {
+            Console.WriteLine("=========================================");
+            Console.WriteLine("|         Alterar Nome do Deck          |");
+            Console.WriteLine("=========================================");
+        }
+
+        public static void PlayerDeleteDeck()
+        {
+            Console.WriteLine("=========================================");
+            Console.WriteLine("|             Deletar Deck              |");
             Console.WriteLine("=========================================");
         }
 
